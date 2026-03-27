@@ -1,0 +1,5 @@
+.python-version
+uv.lock
+.venv
+cookies.txt
+blogs

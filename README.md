@@ -1,14 +1,12 @@
 # tumblr-backup-cookie-scrape
-Back up a list of tumblr blogs, using selenium to scrape login cookies.
+Back up a list of tumblr blogs (for use in automated backups).
 
-System requirements:
-- firefox
-- geckodriver
-
-Quick python package setup: <br/>
+Quick python package setup using pip: <br/>
 `python3 -m venv venv` <br/>
 `source ./venv/bin/activate` <br/>
-`python3 -m pip install -r requirements.txt` <br/>
+`python3 -m pip install .` <br/>
+Create an "app" at https://www.tumblr.com/oauth/apps. Follow the instructions there; most values entered don't matter.
+Run `tumblr-backup --set-api-key API_KEY`, where API_KEY is the OAuth Consumer Token from the app created in the previous step.
 
 And to run:<br/>
 `source ./venv/bin/activate`<br/>
@@ -20,5 +18,3 @@ Put username and password in login.txt (needed to backup dashboard-only blogs)
 
 Used projects:
 - https://github.com/cebtenzzre/tumblr-utils
-- https://github.com/seleniumhq/selenium
-- https://github.com/r44cx/netscape-cookies
