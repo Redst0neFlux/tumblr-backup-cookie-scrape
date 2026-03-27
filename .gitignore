@@ -1,5 +1,12 @@
+# Work files
+blogs/
+cookies.txt
+
+# Don't want to commit these
+blogs.txt
+login.txt
+
+# Python stuff
 .python-version
 uv.lock
-.venv
-cookies.txt
-blogs
+.venv/
