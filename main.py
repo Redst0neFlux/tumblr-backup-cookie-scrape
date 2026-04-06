@@ -36,6 +36,7 @@ def read_blog_list() -> List[List[str]]:
     --options3 argument
     blogname3
     blogname4
+    -N
 
     For a full list of the possible arguments, see https://github.com/cebtenzzre/tumblr-utils/blob/master/docs/usage.md
     Note: the following arguments are always enabled as seen in the backup_blogs functions: --incremental --tag-index --cookiefile www.tumblr.com_cookies.json
@@ -44,7 +45,7 @@ def read_blog_list() -> List[List[str]]:
         blogs = []
         current_blog = []
         for line in blogfile:
-            if not line.startswith("--"): # If the line does not start with --, it is a new blog. The old blog can hence be added to the blogs list and current_blog be cleared.
+            if not line.startswith("-"): # If the line does not start with -, it is a new blog. The old blog can hence be added to the blogs list and current_blog be cleared.
                 blogs.append(flatten(current_blog)) # Turn list of lists into a single list, then append to the list of blogs.
                 current_blog = []
             current_blog.append(line.rstrip().split(maxsplit=1)) # Strip newline characters, and then split on the first space.  
