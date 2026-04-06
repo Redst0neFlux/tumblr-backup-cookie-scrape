@@ -63,6 +63,7 @@ def backup_blogs(blogs: List[List[str]]) -> None:
     --cookiefile www.tumblr.com_cookies.json | Pulls tumblr login cookies from a file, allowing us to backup dashboard-only blogs.
     """
     for blog in blogs:
+        get_login_cookies() # Get login cookies each blog to avoid them expiring
         sys.argv = (
             ["tumblr-backup"]
             + blog
@@ -71,7 +72,8 @@ def backup_blogs(blogs: List[List[str]]) -> None:
         tumblr_backup()
 
 
-def get_login_cookies(username: str, password: str) -> None:
+def get_login_cookies() -> None:
+    username, password = read_login_credentials()
     session = Session()
     session.headers["User-Agent"] = (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.71 "
@@ -88,9 +90,6 @@ def main() -> None:
     )
     set_start_method("forkserver") # Since we have prevented tumblr_backup from starting a forkserver, we now do it ourselves.
     tumblr_backup.__globals__["root_folder"] += ("/blogs") # Makes tumblr_backup put all backed up blogs in the blogs folder
-
-    username, password = read_login_credentials()
-    get_login_cookies(username, password)
 
     blogs = read_blog_list()
     backup_blogs(blogs)
