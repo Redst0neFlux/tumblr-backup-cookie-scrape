@@ -1,4 +1,4 @@
-# tumblr-backup-cookie-scrape
+# tumblr-backup-wrapper
 Back up a list of tumblr blogs (for use in automated backups).
 
 Quick python package setup using pip: <br/>
