@@ -100,8 +100,9 @@ def backup_blogs(blogs: list[list[str]]) -> None:
         print("----------------------")
 
     results_string: str = repr(results) + "\n"
-    results_string += "Failed blogs: \n"
-    results_string += "- " + "\n- ".join(failed_blogs)
+    if failed_blogs:
+        results_string += "Failed blogs: \n"
+        results_string += "- " + "\n- ".join(failed_blogs)
     print(results_string)
 
     with open(file="lastrun.txt", mode="w") as lastrun:
