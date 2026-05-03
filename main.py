@@ -16,6 +16,8 @@ def read_login_credentials() -> tuple[str, str]:
     password123
     """
     with open(file="login.txt", mode="r") as loginfile:
+        login: str
+        password: str
         login, password = [x.rstrip() for x in loginfile]
     return login, password
 
@@ -32,6 +34,7 @@ def read_blog_list() -> list[list[str]]:
     blogname
     --option
     --option2
+    #this line is a comment and won't be read
     blogname2
     --options3 argument
     blogname3
@@ -79,7 +82,8 @@ def backup_blogs(blogs: list[list[str]]) -> None:
                 "--incremental",
                 "--tag-index",
                 "--quiet",
-                "--cookiefile", "cookies.txt",
+                "--cookiefile",
+                "cookies.txt",
             ]  # Default arguments
         )
         exit_code: int = tumblr_backup()
@@ -94,9 +98,14 @@ def backup_blogs(blogs: list[list[str]]) -> None:
                 print()
                 print(f"{blog[0]}: Failure")
         print("----------------------")
-    print(repr(results))
-    print("Failed blogs:")
-    print("- " + "\n- ".join(failed_blogs))
+
+    results_string: str = repr(results) + "\n"
+    results_string += "Failed blogs: \n"
+    results_string += "- " + "\n- ".join(failed_blogs)
+    print(results_string)
+
+    with open(file="lastrun.txt", mode="w") as lastrun:
+        lastrun.write(results_string)
 
 
 def get_login_cookies() -> None:

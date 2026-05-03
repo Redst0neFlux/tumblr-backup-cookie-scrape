@@ -1,9 +1,9 @@
 [project]
-name = "tumblr-backup-cookie-scrape"
+name = "tumblr-backup-wrapper"
 version = "0.1.0"
 description = "Back up a list of tumblr blogs (for use in automated backups)."
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 dependencies = [
-    "tumblr-backup[bs4,dash,jq,video]>=1.6.3",
+    "tumblr-backup[dash,jq,video]>=1.6.5",
 ]
